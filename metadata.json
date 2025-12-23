@@ -1,0 +1,7 @@
+{
+  "name": "URBANVYBE Streetwear Catalog",
+  "description": "Un catálogo de streetwear minimalista de alta gama con gestión exclusiva para administradores y generación de descripciones mediante IA.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

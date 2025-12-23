@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product, ViewMode } from './types';
 import Header from './components/Header';
+import Hero from './components/Hero';
 import ProductGrid from './components/ProductGrid';
 import AdminPanel from './components/AdminPanel';
 import Footer from './components/Footer';
@@ -51,7 +52,7 @@ const App: React.FC = () => {
   const toggleView = () => {
     if (viewMode === 'catalog') {
       if (!isAdminLoggedIn) {
-        const pass = prompt('Introduce la contraseña de administrador:');
+        const pass = prompt('Introduce la contraseña de administrador (default: admin123):');
         if (pass === 'admin123') {
           setIsAdminLoggedIn(true);
           setViewMode('admin');
@@ -70,20 +71,23 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col selection:bg-white selection:text-black">
       <Header viewMode={viewMode} toggleView={toggleView} isAdmin={isAdminLoggedIn} />
       
-      <main className="flex-grow pt-24 pb-12 px-6 max-w-7xl mx-auto w-full">
+      <main className="flex-grow pt-20 pb-12 px-6 max-w-7xl mx-auto w-full">
         {viewMode === 'catalog' ? (
           <>
+            <Hero />
             <ProductGrid products={products} onProductSelect={setSelectedProduct} />
             <VisionSection />
           </>
         ) : (
-          <AdminPanel 
-            products={products} 
-            onAdd={addProduct} 
-            onUpdate={updateProduct} 
-            onDelete={deleteProduct}
-            onClearAll={clearAllProducts}
-          />
+          <div className="pt-10">
+            <AdminPanel 
+              products={products} 
+              onAdd={addProduct} 
+              onUpdate={updateProduct} 
+              onDelete={deleteProduct}
+              onClearAll={clearAllProducts}
+            />
+          </div>
         )}
       </main>
 
